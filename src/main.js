@@ -4,14 +4,19 @@ import { createFilmsTemplate } from './view/Films.js';
 import { createFilmCardTemplate } from './view/Film-card.js';
 import { createFooterFilmCounterTemplate } from './view/footer-count.js';
 import { createFilmDetailsTemplate } from './view/film-details.js';
+import { createCommentTemplate } from './view/comment.js';
 import { gengerateCard } from './mock/card.js';
+import { gengerateComment } from './mock/comment.js';
+
 
 const CARDS = 15;
+const COMMENTS = 5;
 const MAIN_LIST_CARDS = 15;
 const OTHER_LISTS_CARDS = 2;
 
 const cards = new Array(CARDS).fill().map(gengerateCard);
-// console.log(cards[1]);
+const comments = new Array(COMMENTS).fill().map(gengerateComment);
+
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -42,13 +47,9 @@ for (let i = 0; i < OTHER_LISTS_CARDS; i++) {
 
 const siteFooterCounterElement = document.querySelector('.footer__statistics');
 render(siteFooterCounterElement, createFooterFilmCounterTemplate(), 'beforeend');
-render(siteMainElement, createFilmDetailsTemplate(cards[1]), 'beforeend');
 
-// const FilmCardControl = document.querySelectorAll('.film-card__controls-item');
+render(siteMainElement, createFilmDetailsTemplate(cards[0]), 'beforeend');
 
-// console.log(FilmCardControl);
 
-// const isFilmCardControlActive = (CARDS) => {
-//   if
-// }
-
+const popupCommentsContainer = document.querySelector('.film-details__comments-list');
+render(popupCommentsContainer, createCommentTemplate(comments), 'beforeend');

@@ -120,7 +120,3 @@ export const gengerateCard = () => {
     isFavorite: Boolean(getRandomInteger(0, 1)),
   };
 };
-
-// export const generateComments = () => {
-//   const comment
-// }
