@@ -1,8 +1,5 @@
-export const createCommentTemplate = (comment) => {
-
-  const { emoji, text, author, day } = comment;
-
-  return `<li class="film-details__comment">
+export const createCommentTemplate = ({ emoji, text, author, day }) => (
+  `<li class="film-details__comment">
   <span class="film-details__comment-emoji">
     <img src="./images/emoji/${emoji}" width="55" height="55" alt="emoji-smile">
   </span>
@@ -14,5 +11,5 @@ export const createCommentTemplate = (comment) => {
       <button class="film-details__comment-delete">Delete</button>
     </p>
   </div>
-</li>`;
-};
+</li>`
+);

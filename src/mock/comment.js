@@ -39,13 +39,9 @@ const generateAuthor = () => {
   return author[getRandomInteger(0, author.length - 1)];
 };
 
-export const gengerateComment = () => {
-  const commentTime = '12-35';
-
-  return {
-    emoji: generateEmoji(),
-    text: generateText(),
-    author: generateAuthor(),
-    day: commentTime,
-  };
-};
+export const gengerateComment = () => ({
+  emoji: generateEmoji(),
+  text: generateText(),
+  author: generateAuthor(),
+  day: '12-45',
+});

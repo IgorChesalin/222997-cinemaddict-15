@@ -1,13 +1,10 @@
 const isActive = (value) => value === true ? 'film-details__control-button--active' : '';
 
-
 export const createFilmDetailsTemplate = (card, comments) => {
-  // console.log(card)
-  // console.log(comments)
+
   const { title, director, description, rating, runtime, poster, isWatchlist, isWatched, isFavorite } = card;
 
-
-  return `<section class="film-details">
+  return `<section class="film-details visually-hidden">
   <form class="film-details__inner" action="" method="get">
     <div class="film-details__top-container">
       <div class="film-details__close">
