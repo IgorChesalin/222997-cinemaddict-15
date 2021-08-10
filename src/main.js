@@ -58,3 +58,19 @@ comments.forEach((item) => {
   render(popupCommentsContainer, createCommentTemplate(item), 'beforeend');
 });
 
+// Открываем и закрываем детали фильма
+
+const filmDetailsOpenClick = document.querySelectorAll('.film-card__poster');
+const filmDetailsContainer = document.querySelector('.film-details');
+
+filmDetailsOpenClick.forEach((item) => {
+  item.addEventListener('click', () => {
+    filmDetailsContainer.classList.remove('visually-hidden');
+  });
+
+  const filmDetailsCloseButton = filmDetailsContainer.querySelector('.film-details__close-btn');
+  filmDetailsCloseButton.addEventListener('click', () => {
+    filmDetailsContainer.classList.add('visually-hidden');
+  });
+});
+
