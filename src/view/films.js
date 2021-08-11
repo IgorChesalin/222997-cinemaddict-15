@@ -6,7 +6,7 @@ export const createFilmsTemplate = () => (
     <div class="films-list__container">
 
     </div>
-    <button class="films-list__show-more">Show more</button>
+
   </section>
 
   <section class="films-list films-list--extra">
