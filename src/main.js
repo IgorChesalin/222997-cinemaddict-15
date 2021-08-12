@@ -12,7 +12,7 @@ import { gengerateCard } from './mock/card.js';
 import { gengerateComment } from './mock/comment.js';
 
 
-const CARDS = 12;
+const CARDS = 21;
 
 const CARDS_PER_STEP = 5;
 
@@ -40,7 +40,6 @@ const addPosterListener = () => {
   });
 };
 
-addPosterListener();
 
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
@@ -60,7 +59,7 @@ const siteFilmListTopElement = document.querySelectorAll('.films-list__container
 
 // Карточки основной блок
 
-for (let i = 0; i < Math.min (cards.length, CARDS_PER_STEP); i++) {
+for (let i = 0; i < Math.min(cards.length, CARDS_PER_STEP); i++) {
   render(siteFilmListTopElement[0], createFilmCardTemplate(cards[i]), 'beforeend');
 }
 
@@ -80,7 +79,7 @@ if (cards.length > CARDS_PER_STEP) {
     renderedCards += CARDS_PER_STEP;
     addPosterListener();
 
-    if(renderedCards >=cards.length) {
+    if (renderedCards >= cards.length) {
       showMoreButton.remove();
     }
   });
@@ -96,7 +95,7 @@ for (let i = 0; i < OTHER_LISTS_CARDS; i++) {
 }
 
 const siteFooterCounterElement = document.querySelector('.footer__statistics');
-render(siteFooterCounterElement, createFooterFilmCounterTemplate(), 'beforeend');
+render(siteFooterCounterElement, createFooterFilmCounterTemplate(CARDS), 'beforeend');
 
 render(siteMainElement, createFilmDetailsTemplate(cards[0]), 'beforeend');
 
@@ -106,3 +105,6 @@ const popupCommentsContainer = document.querySelector('.film-details__comments-l
 comments.forEach((item) => {
   render(popupCommentsContainer, createCommentTemplate(item), 'beforeend');
 });
+
+
+addPosterListener();

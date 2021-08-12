@@ -1,5 +1,5 @@
-export const createFooterFilmCounterTemplate = () => (
+export const createFooterFilmCounterTemplate = (CARDS) => (
   `<p>
-  130 291 movies inside
+  ${CARDS} movies inside
   </p>`
 );
