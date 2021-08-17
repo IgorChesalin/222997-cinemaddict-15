@@ -1,4 +1,6 @@
-export const createSiteMenuTemplate = () => (
+import { createElement } from '../utils.js';
+
+const createSiteMenuTemplate = () => (
   `<nav class="main-navigation">
     <div class="main-navigation__items">
       <a href="#all" class="main-navigation__item main-navigation__item--active">All movies</a>
@@ -14,3 +16,26 @@ export const createSiteMenuTemplate = () => (
     <li><a href="#" class="sort__button">Sort by rating</a></li>
   </ul>`
 );
+// Пропало поле с фильтром !!!
+
+export default class SiteMenu {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createSiteMenuTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

@@ -1,28 +1,4 @@
-const getRandomFloat = (min, max, digit = 2) => {
-  if (max < min) {
-    [min, max] = [max, min];
-  }
-  if (max > min && min >= 0) {
-    return (Math.random() * (max - min) + min).toFixed(digit);
-  }
-};
-
-const getRandomInteger = (a = 0, b = 1) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-
-  return Math.floor(lower + Math.random() * (upper - lower + 1));
-};
-
-function shuffle(array) {
-  let currentIndex = array.length, randomIndex;
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-  }
-  return array;
-}
+import { getRandomFloat, getRandomInteger, shuffle } from '../utils.js';
 
 const generateDescription = () => {
   const descriptions = [

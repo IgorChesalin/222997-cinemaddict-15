@@ -1,4 +1,4 @@
-const isActive = (value) => value === true ? 'film-details__control-button--active' : '';
+import { createElement, isActive } from '../utils.js';
 
 export const createFilmDetailsTemplate = (card, comments) => {
 
@@ -119,3 +119,26 @@ export const createFilmDetailsTemplate = (card, comments) => {
 </section>`;
 };
 
+export default class FilmDetails {
+  constructor(card, comments) {
+    this._card = card;
+    this._comments = comments;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmDetailsTemplate(this._card, this._comments);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
