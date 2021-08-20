@@ -69,6 +69,7 @@ export const gengerateCard = () => {
   const movieRuntime = `${getRandomInteger(0, 3)}h ${getRandomInteger(0, 59)}m`;
   return {
     title: movieTitle,
+    id: `card${getRandomInteger(0, 999)}`,
     original: movieTitle,
     rating: getRandomFloat(0, 10, 1),
     director: 'Anthony Mann',

@@ -2,8 +2,8 @@ import { createElement } from '../utils.js';
 
 const createFilmCardTemplate = (card) => {
 
-  const { title, description, rating, year, runtime, poster, genres } = card;
-  return `<article class="film-card">
+  const { title, id, description, rating, year, runtime, poster, genres } = card;
+  return `<article class="film-card" id="${id}">
   <h3 class="film-card__title">${title}</h3>
   <p class="film-card__rating">${rating}</p>
   <p class="film-card__info">
@@ -44,3 +44,4 @@ export default class FilmCard {
     this._element = null;
   }
 }
+
