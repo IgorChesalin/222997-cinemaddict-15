@@ -1,6 +1,6 @@
 import { createElement } from '../utils.js';
 
-const createFilmCardTemplate = (card) => {
+const createFilmCardTemplate = (card, commentsCount) => {
 
   const { title, id, description, rating, year, runtime, poster, genres } = card;
   return `<article class="film-card" id="${id}">
@@ -13,7 +13,7 @@ const createFilmCardTemplate = (card) => {
   </p>
   <img src="./images/posters/${poster}" alt="" class="film-card__poster">
   <p class="film-card__description">${description}</p>
-  <a class="film-card__comments">5 comments</a>
+  <a class="film-card__comments">${commentsCount}</a>
   <div class="film-card__controls">
     <button class="film-card__controls-item film-card__controls-item--add-to-watchlist" type="button">Add to watchlist</button>
     <button class="film-card__controls-item film-card__controls-item--mark-as-watched" type="button">Mark as watched</button>
@@ -23,13 +23,14 @@ const createFilmCardTemplate = (card) => {
 };
 
 export default class FilmCard {
-  constructor(cards) {
+  constructor(cards, commentsCount) {
     this._cards = cards;
+    this._commentsCount = commentsCount;
     this._element = null;
   }
 
   getTemplate() {
-    return createFilmCardTemplate(this._cards);
+    return createFilmCardTemplate(this._cards, this._commentsCount);
   }
 
   getElement() {
