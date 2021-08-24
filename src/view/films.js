@@ -3,7 +3,7 @@ import { createElement } from '../utils.js';
 const createFilmsTemplate = () => (
   `<section class="films">
   <section class="films-list">
-    <h2 class="films-list__title">All movies. Upcoming</h2>
+    <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
 
     <div class="films-list__container">
 
@@ -29,7 +29,6 @@ const createFilmsTemplate = () => (
 </section>`
 );
 
-
 export default class Films {
   constructor() {
     this._element = null;
@@ -51,4 +50,3 @@ export default class Films {
     this._element = null;
   }
 }
-
