@@ -57,3 +57,10 @@ export function shuffle(array) {
   }
   return array;
 }
+
+const Keys = {
+  ESC: 'Esc',
+  ESCAPE: 'Escape',
+};
+
+export const checkEsc = (evt) => (evt.key === Keys.ESC || evt.key === Keys.ESCAPE);

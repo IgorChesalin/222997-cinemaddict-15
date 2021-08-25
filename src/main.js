@@ -7,7 +7,7 @@ import FilmCardView from './view/film-card.js';
 import FooterFilmCounterView from './view/footer-count.js';
 import FilmDetailsView from './view/film-details.js';
 import CommentView from './view/comment.js';
-import { render, RenderPosition } from './utils.js';
+import { render, RenderPosition, checkEsc } from './utils.js';
 import { gengerateCard } from './mock/card.js';
 import { gengerateComment } from './mock/comment.js';
 
@@ -26,9 +26,31 @@ const siteHeaderElement = document.querySelector('.header');
 
 render(siteMainElement, new SiteMenuView().getElement(), RenderPosition.BEFOREEND);
 
+const onFilmDetailsEscKeyDown = (evt) => {
+  if(checkEsc(evt)) {
+    const filmDetails = document.querySelector('.film-details');
+    siteMainElement.removeChild(filmDetails);
+    document.querySelector('body').classList.remove('hide-overflow');
+    document.removeEventListener('keydown', onFilmDetailsEscKeyDown);
+  }
+};
+
+const onFilmDetailsCloseClick = () => {
+  const filmDetailsCloseButton = document.querySelector('.film-details__close-btn');
+  document.querySelector('body').classList.add('hide-overflow');
+
+  filmDetailsCloseButton.addEventListener('click', () => {
+    const filmDetails = document.querySelector('.film-details');
+    siteMainElement.removeChild(filmDetails);
+    document.querySelector('body').classList.remove('hide-overflow');
+    document.removeEventListener('keydown', onFilmDetailsEscKeyDown);
+  });
+};
+
+
 const onFilmCardClick = (evt) => {
   if (evt.target.tagName === 'H3' || evt.target.tagName === 'A' || evt.target.tagName === 'IMG') {
-
+    document.addEventListener('keydown', onFilmDetailsEscKeyDown);
     let filmDetails = document.querySelector('.film-details');
 
     if (filmDetails) {
@@ -45,14 +67,8 @@ const onFilmCardClick = (evt) => {
       render(popupCommentsContainer, new CommentView(comment).getElement(), 'beforeend');
     });
 
-    const filmDetailsCloseButton = document.querySelector('.film-details__close-btn');
+    onFilmDetailsCloseClick();
 
-    document.querySelector('body').classList.add('hide-overflow');
-
-    filmDetailsCloseButton.addEventListener('click', () => {
-      siteMainElement.removeChild(filmDetails);
-      document.querySelector('body').classList.remove('hide-overflow');
-    });
   }
 };
 
