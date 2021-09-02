@@ -1,4 +1,5 @@
-import { createElement, isActive } from '../utils.js';
+import AbstractView from './abstract.js';
+import { isActive } from '../utils.js';
 
 export const createFilmDetailsTemplate = (card, comments) => {
   const { title, director, description, rating, runtime, poster, isWatchlist, isWatched, isFavorite } = card;
@@ -116,26 +117,14 @@ export const createFilmDetailsTemplate = (card, comments) => {
 </section>`;
 };
 
-export default class FilmDetails {
+export default class FilmDetails extends AbstractView {
   constructor(card, comments) {
+    super();
     this._card = card;
     this._comments = comments;
-    this._element = null;
   }
 
   getTemplate() {
     return createFilmDetailsTemplate(this._card, this._comments);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

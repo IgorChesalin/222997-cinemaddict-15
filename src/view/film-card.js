@@ -1,8 +1,10 @@
 import { createElement } from '../utils.js';
+import { isActive } from '../utils.js';
+import AbstractView from './abstract.js';
 
 const createFilmCardTemplate = (card, commentsCount) => {
-
-  const { title, id, description, rating, year, runtime, poster, genres } = card;
+// не срабатывают фильтры просмотрено и тд
+  const { title, id, description, rating, year, runtime, poster, genres, isWatchlist, isWatched, isFavorite } = card;
   return `<article class="film-card" id="${id}">
   <h3 class="film-card__title">${title}</h3>
   <p class="film-card__rating">${rating}</p>
@@ -15,18 +17,19 @@ const createFilmCardTemplate = (card, commentsCount) => {
   <p class="film-card__description">${description}</p>
   <a class="film-card__comments">${commentsCount} comments</a>
   <div class="film-card__controls">
-    <button class="film-card__controls-item film-card__controls-item--add-to-watchlist" type="button">Add to watchlist</button>
-    <button class="film-card__controls-item film-card__controls-item--mark-as-watched" type="button">Mark as watched</button>
-    <button class="film-card__controls-item film-card__controls-item--favorite" type="button">Mark as favorite</button>
+    <button class="film-card__controls-item film-card__controls-item--add-to-watchlist ${isActive(isWatchlist)}" type="button">Add to watchlist</button>
+    <button class="film-card__controls-item film-card__controls-item--mark-as-watched ${isActive(isWatched)}" type="button">Mark as watched</button>
+    <button class="film-card__controls-item film-card__controls-item--favorite ${isActive(isFavorite)}" type="button">Mark as favorite</button>
   </div>
   </article>`;
 };
 
-export default class FilmCard {
+// непонятно как тут быть т.к. передает мета данные .дата
+export default class FilmCard extends AbstractView {
   constructor(cards, commentsCount) {
+    super();
     this._cards = cards;
     this._commentsCount = commentsCount;
-    this._element = null;
   }
 
   getTemplate() {
@@ -40,9 +43,5 @@ export default class FilmCard {
     }
 
     return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

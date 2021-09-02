@@ -100,7 +100,6 @@ if (cards.length > 0) {
       cards
         .slice(renderedCards, renderedCards + CARDS_PER_STEP)
         .forEach((card) => render(siteFilmListContainer[0], new FilmCardView(card).getElement(), RenderPosition.BEFOREEND));
-
       renderedCards += CARDS_PER_STEP;
 
       if (renderedCards >= cards.length) {
